@@ -1,0 +1,90 @@
+tableau_jeu = [
+[" "," "," "],
+[" "," "," "],
+[" "," "," "] ]
+
+def interface_tictactoe(tableau_jeu):
+
+    print(" ", " ", "|", "1", "|", "2", "|", "3")
+    print(" ", "-------------")
+    print("A", " ", "|", (tableau_jeu[0][0]), "|", (tableau_jeu[0][1]), "|", (tableau_jeu[0][2]), "|")
+    print("---------------")
+    print("B", " ", "|", (tableau_jeu[1][0]), "|", (tableau_jeu[1][1]), "|", (tableau_jeu[1][2]), "|")
+    print("---------------")
+    print("C", " ", "|", (tableau_jeu[2][0]), "|", (tableau_jeu[2][1]), "|", (tableau_jeu[2][2]), "|")
+    print(" ", "-------------")
+    
+def gagnant_oupas(tableau_jeu):
+    """True = partie terminée, False = Partie continue. 
+    Symbole du gagnant ou match nul"""
+    if tableau_jeu[0][0] == tableau_jeu[1][1] == tableau_jeu[2][2] and tableau_jeu[0][0] in ["X","O"]:
+        return True, tableau_jeu[0][0] 
+    elif tableau_jeu[0][2] == tableau_jeu[1][1] == tableau_jeu[2][0] and tableau_jeu[0][2] in ["X","O"]:
+        return True, tableau_jeu[0][2]
+    elif tableau_jeu[0][0] == tableau_jeu[1][0] == tableau_jeu[2][0] and tableau_jeu[0][0] in ["X","O"]:
+       return True, tableau_jeu[0][0]
+    elif tableau_jeu[0][1] == tableau_jeu[1][1] == tableau_jeu[2][1] and tableau_jeu[0][1] in ["X","O"]:
+        return True, tableau_jeu[0][1]
+    elif tableau_jeu[0][2] == tableau_jeu[1][2] == tableau_jeu[2][2] and tableau_jeu[0][2] in ["X","O"]:
+        return True, tableau_jeu[0][2]
+    elif tableau_jeu[0][0] == tableau_jeu[0][1] == tableau_jeu[0][2] and tableau_jeu[0][0] in ["X","O"]:
+        return True, tableau_jeu[0][0]
+    elif tableau_jeu[1][0] == tableau_jeu[1][1] == tableau_jeu[1][2] and tableau_jeu[1][0] in ["X","O"]:
+        return True, tableau_jeu[1][0]
+    elif tableau_jeu[2][0] == tableau_jeu[2][1] == tableau_jeu[2][2] and tableau_jeu[2][0] in ["X","O"]:
+        return True, tableau_jeu[2][0]
+    else:
+        for ligne in tableau_jeu:
+            for element in ligne:
+                if element == " ":
+                    return False, "Continue"
+        return True, "Match Nul"
+
+def interactions(tableau_jeu):
+    tour_joueur = True  # True pour Joueur 1 (X), False pour Joueur 2 (O)
+
+    while True:
+        interface_tictactoe(tableau_jeu)  # Affiche le tableau de jeu après chaque tour
+
+        # Déterminer le joueur actif et demander la position
+        if tour_joueur:
+            choix_position = input(f"{joueur1} (X), choisissez la position (A1, B2, C3...): ")
+        else:
+            choix_position = input(f"{joueur2} (O), choisissez la position (A1, B2, C3...): ")
+
+
+        positions = {
+            "A1": (0, 0), "A2": (0, 1), "A3": (0, 2),
+            "B1": (1, 0), "B2": (1, 1), "B3": (1, 2),
+            "C1": (2, 0), "C2": (2, 1), "C3": (2, 2)
+        }
+
+        # Vérifier si la position est valide
+        if choix_position in positions:
+            x, y = positions[choix_position]
+
+            # Vérifier si la case est vide
+            if tableau_jeu[x][y] == " ":
+                # Remplir la case en fonction du joueur
+                tableau_jeu[x][y] = "X" if tour_joueur else "O"
+                tour_joueur = not tour_joueur
+            else:
+                print("Case déjà prise, essayez une autre position.")
+        else:
+            print('Entrez une case existante (EX. A1, C3...)')
+
+gagnant_oupas = False
+tour_joueur1 = True
+tour_joueur2 = False
+interface_tictactoe(tableau_jeu)
+joueur1 = input("Joueur 1, entrez votre nom: ")
+joueur2 = input("Joueur 2, entrez votre nom: ")
+print("Bonjour,", joueur1, "c'est a vous de commencer !")
+
+interactions(tableau_jeu)
+
+'''if gagnant_oupas(tableau_jeu)[1] == "X":
+    print("Victoire de", joueur1)
+elif gagnant_oupas(tableau_jeu)[1] == "O":
+    print("Victoire de", joueur2)
+print(gagnant_oupas(tableau_jeu))'''
