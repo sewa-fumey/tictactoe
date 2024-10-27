@@ -3,9 +3,13 @@ L'IA cherche a jouer son premier coup la ou la case lui donnera la possibilite d
 L'ia comblera toujours la troisieme case qui permettrai au joueur de gagner
 l'IA cherchera a remplir trois cases alignees le plus vite possible
 
--ecrire les conditions
--poser et organiser les conditions en fonction de la situation et de la priorite
+-remplacement du joueur2 par l'IA
+-conception des conditions du comportement de l'IA
+-orgqnisation des conditions en fonction de la situation et de la priorite
+-traduction en code
+-implementation a la trame V3 avec un choix 2 joueurs/ 1 joueur
 
+Comportement de l'IA
 Dans l'ordre des priorites :
 
 1 :  Terminer sa ligne des que possible

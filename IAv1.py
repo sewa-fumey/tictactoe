@@ -91,7 +91,7 @@ def interactions(tableau_jeu):
                 else:
                     print('Entrez une case existante (EX. A1, C3...)') 
 
-            else:  #Ici on aurait pu encore optimiser le code en regroupant les condition, voir en creant des fonctions mais manque de temps
+            else:  #Ici on aurait pu encore optimiser le code en regroupant les conditions, simplifiant le code, voir en creant des fonctions a l'avenir
                 turn_played = False
                 for x in range(3): #Pour le moment l'IA couvre en partie les trois principes enoncees lorsque je l'ai concue, ce qui est un bon debut
                     if turn_played :
@@ -100,59 +100,72 @@ def interactions(tableau_jeu):
                             if tableau_jeu[x][y] == " ": #Evidement il faudrait aussi couvrir les diagonales et le sens inverse
 
                                 #On commence par permettre a l'IA d'assurer sa victoire des que possible
-                                if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == "O": 
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == "O" and tableau_jeu[x][(y+2) % 3] == " " : 
                                     tableau_jeu[x][(y+2) % 3] = "O" 
                                     tour_joueur = not tour_joueur #On declare le tour du joueur
                                     turn_played = True #On met fin au tour de l'IA et on evite une boucle infinie
-                                elif tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+2) % 3] == "O":
+                                    break
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+2) % 3] == "O" and tableau_jeu[x][(y+1) % 3] == " ":
                                     tableau_jeu[x][(y+1) % 3] = "O" 
                                     tour_joueur = not tour_joueur
                                     turn_played = True
-                                elif tableau_jeu[x][y] == "O" and tableau_jeu[(x+1) % 3][y] == "O":
+                                    break
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[(x+1) % 3][y] == "O" and tableau_jeu[(x+2) % 3][y] == " ":
                                     tableau_jeu[(x+2) % 3][y] = "O"  
                                     tour_joueur = not tour_joueur
                                     turn_played = True  
-                                elif tableau_jeu[x][y] == "O" and tableau_jeu[(x+2) % 3][y] == "O":
+                                    break
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[(x+2) % 3][y] == "O" and tableau_jeu[(x+1) % 3][y] == " ":
                                     tableau_jeu[(x+1) % 3][y] = "O"
                                     tour_joueur = not tour_joueur
                                     turn_played = True
+                                    break
 
                                 #Ensuite on conditionne le blocage du joueur des que possible
-                                if tableau_jeu[x][y] == "X" and tableau_jeu[x][(y+1) % 3] == "X": 
+                                if tableau_jeu[x][y] == "X" and tableau_jeu[x][(y+1) % 3] == "X" and tableau_jeu[x][(y+2) % 3] == " " : 
                                     tableau_jeu[x][(y+2) % 3] = "O" 
                                     tour_joueur = not tour_joueur
                                     turn_played = True
-                                elif tableau_jeu[x][y] == "X" and tableau_jeu[x][(y+2) % 3] == "X":
+                                    break
+                                elif tableau_jeu[x][y] == "X" and tableau_jeu[x][(y+2) % 3] == "X" and tableau_jeu[x][(y+1) % 3] == " " :
                                     tableau_jeu[x][(y+1) % 3] = "O" 
                                     tour_joueur = not tour_joueur
                                     turn_played = True
-                                elif tableau_jeu[x][y] == "X" and tableau_jeu[(x+1) % 3][y] == "X":
+                                    break
+                                if tableau_jeu[x][y] == "X" and tableau_jeu[(x+1) % 3][y] == "X" and tableau_jeu[(x+2) % 3][y] == " ":
                                     tableau_jeu[(x+2) % 3][y] = "O"  
                                     tour_joueur = not tour_joueur
-                                    turn_played = True  
-                                elif tableau_jeu[x][y] == "X" and tableau_jeu[(x+2) % 3][y] == "X":
+                                    turn_played = True
+                                    break 
+                                if tableau_jeu[x][y] == "X" and tableau_jeu[(x+2) % 3][y] == "X" and tableau_jeu[(x+1) % 3][y] == " ":
                                     tableau_jeu[(x+1) % 3][y] = "O"
                                     tour_joueur = not tour_joueur
                                     turn_played = True
+                                    break
                                 
                                 #On conditionne la deuxieme phase de placement
-                                elif tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == " " and tableau_jeu[x][(y+2) % 3] == " " : 
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == " " and tableau_jeu[x][(y+2) % 3] == " " : 
                                     tableau_jeu[x][(y+1) % 3] = "O"
                                     tour_joueur = not tour_joueur
                                     turn_played = True
-                                elif tableau_jeu[x][y] == "O" and tableau_jeu[(x+1) %3][y] == " " and tableau_jeu[(x+2) % 3][y] == " " :
+                                    break
+                                if tableau_jeu[x][y] == "O" and tableau_jeu[(x+1) %3][y] == " " and tableau_jeu[(x+2) % 3][y] == " " :
                                     tableau_jeu[(x+1) % 3][y] = "O"
                                     tour_joueur = not tour_joueur
                                     turn_played = True
+                                    break
                                 
                                 #Et enfin on conditionne la premiere phase de placement
-                                elif (tableau_jeu[x][y] == " " and tableau_jeu[x][(y+1) % 3] == " " and tableau_jeu[x][(y+2) % 3] == " " or 
-                                    tableau_jeu[x][y] == " " and tableau_jeu[(x+1) % 3][y] == " " and tableau_jeu[(x+2) % 3][y] == " "):
-                                    tableau_jeu[x][y] = "O"
+                                elif tableau_jeu[x][0] == " " and tableau_jeu[x][1] == " " and tableau_jeu[x][2] == " ":
+                                    tableau_jeu[x][0] = "O"
                                     tour_joueur = not tour_joueur 
                                     turn_played = True
-
-                                turn_played = True #Peut etre repetitif ?
-                                break                                
+                                    break              
+                                elif tableau_jeu[0][y] == " " and tableau_jeu[1][y] == " " and tableau_jeu[2][y] == " ":
+                                    tableau_jeu[0][y] = "O"
+                                    tour_joueur = not tour_joueur 
+                                    turn_played = True
+                                    break                  
+          
 
 interactions(tableau_jeu)
