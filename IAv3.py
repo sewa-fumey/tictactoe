@@ -65,7 +65,7 @@ def gagnant_oupas(tableau_jeu):
                 '''elif element == "X" or "O":
                     print("Draw !")'''
                 
-def interactions(tableau_jeu):
+def interactions_1_player(tableau_jeu):
     tour_joueur = True
     positions = {
         "A1": (0, 0), "A2": (0, 1), "A3": (0, 2),
