@@ -126,7 +126,7 @@ def interactions_1_player(game_board):
                         game_board[x][0] = "O"
                         turn_played = True
 
-                    # Vérification des colonnes pour bloquer le joueur
+                    # Colonnes
                     if game_board[0][y] == "X" and game_board[1][y] == "X" and game_board[2][y] == " ":
                         game_board[2][y] = "O"
                         turn_played = True
@@ -137,7 +137,7 @@ def interactions_1_player(game_board):
                         game_board[0][y] = "O"
                         turn_played = True
 
-                    # Vérification des diagonales pour bloquer le joueur
+                    # Diagonales
                     if game_board[0][0] == "X" and game_board[1][1] == "X" and game_board[2][2] == " ":
                         game_board[2][2] = "O"
                         turn_played = True
@@ -145,15 +145,13 @@ def interactions_1_player(game_board):
                         game_board[2][0] = "O"
                         turn_played = True
 
-                    # Placement d'un "O" dans des cases vides pour remplir
+                    # Placement d'un "O" dans des cases vides
                     if game_board[x][0] == "O" and game_board[x][1] == " " and game_board[x][2] == " ":
                         game_board[x][1] = "O"
                         turn_played = True
                     if game_board[0][y] == "O" and game_board[1][y] == " " and game_board[2][y] == " ":
                         game_board[1][y] = "O"
                         turn_played = True
-
-                    # Placement d'un "O" dans des cases vides
                     if game_board[x][0] == " " and game_board[x][1] == " " and game_board[x][2] == " ":
                         game_board[x][0] = "O"
                         turn_played = True
@@ -162,7 +160,7 @@ def interactions_1_player(game_board):
                         turn_played = True
                     
                     else : 
-                        if  game_board[x][0] == " " : game_board[0][y] = "O"
+                        if  game_board[x][y] == " " : game_board[x][y] = "O"
                         turn_played = True
 
                     if turn_played:
