@@ -160,6 +160,10 @@ def interactions_1_player(game_board):
                     if game_board[0][y] == " " and game_board[1][y] == " " and game_board[2][y] == " ":
                         game_board[0][y] = "O"
                         turn_played = True
+                    
+                    else : 
+                        if  game_board[x][0] == " " : game_board[0][y] = "O"
+                        turn_played = True
 
                     if turn_played:
                         winner_or_not(game_board)
