@@ -1,0 +1,33 @@
+Principes :
+L'IA cherche a jouer son premier coup la ou la case lui donnera la possibilite de se develloper avec le plus de choix possible
+L'ia comblera toujours la troisieme case qui permettrai au joueur de gagner
+l'IA cherchera a remplir trois cases alignees le plus vite possible
+
+-remplacement du joueur2 par l'IA
+-conception des conditions du comportement de l'IA
+-orgqnisation des conditions en fonction de la situation et de la priorite
+-traduction en code
+-implementation a la trame V3 avec un choix 2 joueurs/ 1 joueur
+
+Comportement de l'IA
+Dans l'ordre des priorites :
+
+1 :  Terminer sa ligne des que possible
+
+EX : if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == "O": 
+                                    tableau_jeu[x][(y+2) % 3] = "O" 
+
+2 : Toujours placer son coup si deux coups adverses se suivent 
+
+EX : if tableau_jeu[x][y] == "X" and tableau_jeu[x][(y+1) % 3] == "X": 
+                                    tableau_jeu[x][(y+2) % 3] = "O" 
+
+3 : Toujours placer son deuxieme coup a cote du premier coup si la case d'apres est vides
+
+EX : if tableau_jeu[x][y] == "O" and tableau_jeu[x][(y+1) % 3] == " " and tableau_jeu[x][(y+2) % 3] == " " :
+                                    tableau_jeu[x][(y+1) % 3] = "O"
+
+4 : Placer un coup la ou les deux cases (largeur longeur et diagonale) autour sont vides
+
+  EX:  if tableau_jeu[x][y] == " " and tableau_jeu[x][y+1] == " " and tableau_jeu[x][y+2] == " ":
+        tableau_jeu[x][y] = "O"

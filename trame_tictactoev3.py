@@ -61,7 +61,9 @@ def gagnant_oupas(tableau_jeu):
             for element in ligne:
                 if element == " ":
                     return False
-
+                elif element == "X" or "O":
+                    print("Draw !") 
+                
 def interactions(tableau_jeu):
     tour_joueur = True
     while gagnant_oupas(tableau_jeu) == False:
